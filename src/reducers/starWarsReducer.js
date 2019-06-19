@@ -6,8 +6,7 @@ const initialState = {
 export const charsReducer = (state = initialState, action) => {
   switch (action.type) {
     case (types.SUCCESS):
-      console.log(action.payload);
-        return state;
+        return {...state, characters: action.payload};
     case (types.FAILURE):
       console.log(action.payload);
         return state;

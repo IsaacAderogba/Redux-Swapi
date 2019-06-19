@@ -16,6 +16,7 @@ export const fetchData = () => dispatch => {
     .get("https://swapi.co/api/people/")
     .then(res => {
       dispatch({ type: SUCCESS, payload: res.data.results });
+      dispatch({ type: FETCHING, payload: false });
     })
     .catch(err => {
       dispatch({ type: FAILURE, payload: err.message });
