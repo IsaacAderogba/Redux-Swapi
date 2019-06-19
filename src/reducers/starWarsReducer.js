@@ -5,9 +5,6 @@ const initialState = {
 };
 export const charsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case (types.FETCHING):
-      console.log(action.payload)
-      return state;
     case (types.SUCCESS):
       console.log(action.payload);
         return state;

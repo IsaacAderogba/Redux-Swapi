@@ -7,7 +7,7 @@ export const fetchingReducer = (state = initialState, action) => {
   switch (action.type) {
     case (types.FETCHING):
       console.log(action.payload)
-      return state;
+      return {...state, isFetching: action.payload};
 
     // Fill me in with the important reducers
     // action types should be FETCHING, SUCCESS and FAILURE
