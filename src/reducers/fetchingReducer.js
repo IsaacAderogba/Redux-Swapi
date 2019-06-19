@@ -1,8 +1,9 @@
 import * as types from "../actions";
+
 const initialState = {
   isFetching: true
-  // Array characters, Boolean fetching, null error.
 };
+
 export const fetchingReducer = (state = initialState, action) => {
   switch (action.type) {
     case (types.FETCHING):

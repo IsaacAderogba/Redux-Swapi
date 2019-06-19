@@ -1,19 +1,14 @@
 import * as types from "../actions";
 const initialState = {
-  characters: []
-  // Array characters, Boolean fetching, null error.
+  characters: [],
+  errorMessage: ""
 };
 export const charsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case (types.SUCCESS):
-        return {...state, characters: action.payload};
-    case (types.FAILURE):
-      console.log(action.payload);
-        return state;
-
-    // Fill me in with the important reducers
-    // action types should be FETCHING, SUCCESS and FAILURE
-    // your switch statement should handle all of these cases.
+    case types.SUCCESS:
+      return { ...state, characters: action.payload };
+    case types.FAILURE:
+      return { ...state, errorMessage: action.payload };
     default:
       return state;
   }
