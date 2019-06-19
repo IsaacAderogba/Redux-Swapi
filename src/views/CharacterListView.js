@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import pt from "prop-types";
 
 import { CharacterList } from "../components";
 import * as actionCreators from "../actions/index";
@@ -20,6 +21,13 @@ const CharacterListView = props => {
       </div>
     );
   }
+};
+
+CharacterListView.propTypes = {
+  characters: pt.array,
+  errorMessage: pt.string,
+  fetching: pt.bool,
+  fetchData: pt.func
 };
 
 function mapStateToProps(state) {
