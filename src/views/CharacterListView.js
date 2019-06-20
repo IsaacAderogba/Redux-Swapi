@@ -1,35 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import pt from "prop-types";
 
 import { CharacterList } from "../components";
-// import actions
+import * as actionCreators from "../actions/index";
 
-class CharacterListView extends React.Component {
-  constructor() {
-    super();
-  }
+const CharacterListView = props => {
+  useEffect(() => {
+    props.fetchData();
+  }, []);
 
-  componentDidMount() {
-    // call our action
-  }
-
-  render() {
-    if (this.props.fetching) {
-      // return something here to indicate that you are fetching data
-    }
+  if (props.fetching) {
+    return <div>Fetching...</div>;
+  } else if (props.errorMessage) {
+    return <div>{props.errorMessage}</div>;
+  } else {
     return (
       <div className="CharactersList_wrapper">
-        <CharacterList characters={this.props.characters} />
+        <CharacterList characters={props.characters} />
       </div>
     );
   }
+};
+
+CharacterListView.propTypes = {
+  characters: pt.array,
+  errorMessage: pt.string,
+  fetching: pt.bool,
+  fetchData: pt.func
+};
+
+function mapStateToProps(state) {
+  return {
+    characters: state.charsReducer.characters,
+    errorMessage: state.charsReducer.errorMessage,
+    fetching: state.fetchingReducer.isFetching
+  };
 }
 
-// our mapStateToProps needs to have two properties inherited from state
-// the characters and the fetching boolean
 export default connect(
-  null /* mapStateToProps replaces null here */,
-  {
-    /* action creators go here */
-  }
+  mapStateToProps,
+  actionCreators
 )(CharacterListView);
